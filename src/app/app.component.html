@@ -1,5 +1,11 @@
+<!-- src/app/app.component.html -->
 <div class="min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 p-4">
   <h1 class="text-4xl text-center text-white font-bold mb-6">Weather App</h1>
   <app-search-bar (citySelected)="fetchWeather($event)"></app-search-bar>
-  <app-weather-display [weather]="weather" [error]="error"></app-weather-display>
+
+  <div *ngIf="isLoading" class="text-center text-white mt-4">
+    <p>Loading...</p>
+  </div>
+
+  <app-weather-display [weather]="weather" [airPollution]="airPollution" [error]="error"></app-weather-display>
 </div>
