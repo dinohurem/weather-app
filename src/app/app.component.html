@@ -1,5 +1,5 @@
 <!-- src/app/app.component.html -->
-<div class="min-h-screen bg-gradient-to-r from-blue-400 to-blue-600 p-4">
+<div class="min-h-screen bg-gradient-to-r from-main-bg to-main-fg p-4">
   <h1 class="text-4xl text-center text-white font-bold mb-6">Weather App</h1>
   <app-search-bar (citySelected)="fetchWeather($event)"></app-search-bar>
 
@@ -8,4 +8,6 @@
   </div>
 
   <app-weather-display [weather]="weather" [airPollution]="airPollution" [error]="error"></app-weather-display>
+
+  <app-toast></app-toast>
 </div>

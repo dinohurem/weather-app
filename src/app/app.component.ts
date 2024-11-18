@@ -7,6 +7,8 @@ import { WeatherService } from './services/weather.service';
 import { AirPollution } from './models/air-pollution.model';
 import { Weather } from './models/weather.model';
 import { CommonModule } from '@angular/common';
+import { ToastService } from './services/toast.service';
+import { ToastComponent } from "./components/toast/toast.component";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +20,7 @@ import { CommonModule } from '@angular/common';
     WeatherDisplayComponent,
     SearchBarComponent,
     CommonModule,
+    ToastComponent
   ]
 })
 export class AppComponent {
@@ -26,7 +29,9 @@ export class AppComponent {
   error: string = '';
   isLoading: boolean = false;
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService,
+    private toastService: ToastService,
+  ) { }
 
   fetchWeather(city: string) {
     this.isLoading = true;
@@ -38,6 +43,7 @@ export class AppComponent {
         this.isLoading = false;
       },
       error: (err) => {
+        this.toastService.showToast('error', 'This is an error message.');
         console.error(err);
         this.error = err.message;
         this.weather = undefined;
